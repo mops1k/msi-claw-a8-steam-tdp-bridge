@@ -108,9 +108,17 @@ jobs:
           PRERELEASE: ${{ inputs.prerelease && '--prerelease' || '' }}
         run: |
           set -euo pipefail
+          shopt -s nullglob
+          assets=(dist/*)
+          if (( ${#assets[@]} == 0 )); then
+            echo "error: no build artifacts to attach to the release" >&2
+            exit 1
+          fi
+          printf 'attaching %d asset(s):\n' "${#assets[@]}"
+          printf '  %s\n' "${assets[@]}"
           gh release create "$TAG" \
             --repo "${{ github.repository }}" \
             --title "$TAG" \
             --generate-notes \
             $PRERELEASE \
-            dist/*
+            "${assets[@]}"
