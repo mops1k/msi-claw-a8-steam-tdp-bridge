@@ -1,5 +1,5 @@
 project('msi-claw-a8-steam-tdp-bridge', 'c',
-  version: '0.1.0',
+  version: '0.1.1',
   license: 'MIT',
   default_options: ['c_std=c11', 'warning_level=2', 'optimization=2'])
 
