@@ -49,10 +49,10 @@ source/
   tdp.c             # высокоуровневый get/set, маппинг PL, profile policy, state
 meson.build
 data/
-  steam-tdp-bridge.service
-  steam-tdp-bridge-devicetoml.service   # bind-mount override device TOML
+  msi-claw-a8-steam-tdp-bridge.service
+  msi-claw-a8-steam-tdp-bridge-devicetoml.service  # bind-mount override device TOML
   msi-claw-amd.toml                     # копия device-TOML без [tdp_limit]
-  steam-tdp-bridge.remotes.toml         # remotes.d
+  msi-claw-a8-steam-tdp-bridge.remotes.toml        # remotes.d
   com.steampowered.TdpBridge.conf       # dbus policy
   config.ini
 install.sh
@@ -61,8 +61,9 @@ PKGBUILD
 README.md
 ```
 
-Устанавливается: `/usr/bin/steam-tdp-bridge`, юниты в `/usr/lib/systemd/system/`,
-remotes в `/etc/steamos-manager/remotes.d/`, override device-TOML и конфиг в `/etc/steam-tdp-bridge/`.
+Устанавливается: `/usr/bin/msi-claw-a8-steam-tdp-bridge`, юниты в `/usr/lib/systemd/system/`,
+remotes в `/etc/steamos-manager/remotes.d/`, override device-TOML и конфиг в
+`/etc/msi-claw-a8-steam-tdp-bridge/`.
 
 ## 4. Поведение
 
@@ -75,7 +76,7 @@ remotes в `/etc/steamos-manager/remotes.d/`, override device-TOML и конфи
   - `auto` (по умолчанию): пишем как есть; при ошибке — ставим `msi-wmi-platform=performance`, пишем, запоминаем;
   - `always`: держать `performance`, пока задан custom-TDP;
   - `never`: писать как есть.
-- Персистентность: последнее значение в `/var/lib/steam-tdp-bridge/tdp`; при старте (`restore_last=true`) применяем.
+- Персистентность: последнее значение в `/var/lib/msi-claw-a8-steam-tdp-bridge/tdp`; при старте (`restore_last=true`) применяем.
 
 ## 5. Этапы
 
@@ -176,3 +177,8 @@ remotes в `/etc/steamos-manager/remotes.d/`, override device-TOML и конфи
   коммитит и тегирует, собирает Arch-пакет и отдельный бинарник в контейнере `archlinux`,
   создаёт GitHub-релиз с артефактами. Репозиторий инициализирован, запушен по SSH
   (ветка `main`).
+- 2026-09-16: **полный ренейм** `steam-tdp-bridge` → `msi-claw-a8-steam-tdp-bridge`
+  (по имени репозитория): пакет (`pkgname`), бинарник, systemd-юниты, sleep-хук, helper,
+  каталоги `/etc`, `/var/lib`, `/usr/lib`, `remotes.d`, артефакты релиза. D-Bus-имена
+  (`com.steampowered.TdpBridge`, `com.steampowered.SteamOSManager1.TdpLimit1`) не менялись —
+  это контракт совместимости со SteamOS.

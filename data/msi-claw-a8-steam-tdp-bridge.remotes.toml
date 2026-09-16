@@ -1,4 +1,4 @@
-# Remote TdpLimit1 implementation provided by steam-tdp-bridge.
+# Remote TdpLimit1 implementation provided by msi-claw-a8-steam-tdp-bridge.
 # See https://gitlab.steamos.cloud/holo/steamos-manager (Interoperability).
 [TdpLimit1]
 bus_name = "com.steampowered.TdpBridge"

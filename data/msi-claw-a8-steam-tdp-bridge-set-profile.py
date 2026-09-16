@@ -185,7 +185,7 @@ def evaluate(expression):
 
 def main():
     if len(sys.argv) < 2:
-        sys.stderr.write("usage: steam-set-profile.py get|set <profile>\n")
+        sys.stderr.write("usage: msi-claw-a8-steam-tdp-bridge-set-profile.py get|set <profile>\n")
         return 2
 
     mode = sys.argv[1]
@@ -194,19 +194,19 @@ def main():
     elif mode == "set" and len(sys.argv) >= 3:
         expression = SET_JS.replace("__PROFILE__", json.dumps(sys.argv[2]))
     else:
-        sys.stderr.write("usage: steam-set-profile.py get|set <profile>\n")
+        sys.stderr.write("usage: msi-claw-a8-steam-tdp-bridge-set-profile.py get|set <profile>\n")
         return 2
 
     try:
         value = evaluate(expression)
     except Exception as exc:  # noqa: BLE001 - best effort helper
-        sys.stderr.write(f"steam-set-profile: {exc}\n")
+        sys.stderr.write(f"msi-claw-a8-steam-tdp-bridge-set-profile: {exc}\n")
         return 1
 
     if not isinstance(value, dict):
         return 1
     if "error" in value:
-        sys.stderr.write(f"steam-set-profile: {value['error']}\n")
+        sys.stderr.write(f"msi-claw-a8-steam-tdp-bridge-set-profile: {value['error']}\n")
         return 1
 
     if mode == "get":

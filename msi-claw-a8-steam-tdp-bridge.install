@@ -1,7 +1,7 @@
 post_install() {
   systemctl daemon-reload
-  systemctl enable --now steam-tdp-bridge-devicetoml.service
-  systemctl enable --now steam-tdp-bridge.service
+  systemctl enable --now msi-claw-a8-steam-tdp-bridge-devicetoml.service
+  systemctl enable --now msi-claw-a8-steam-tdp-bridge.service
   _restart_steamos_manager
 }
 
@@ -10,8 +10,8 @@ post_upgrade() {
 }
 
 pre_remove() {
-  systemctl disable --now steam-tdp-bridge.service 2>/dev/null || true
-  systemctl disable --now steam-tdp-bridge-devicetoml.service 2>/dev/null || true
+  systemctl disable --now msi-claw-a8-steam-tdp-bridge.service 2>/dev/null || true
+  systemctl disable --now msi-claw-a8-steam-tdp-bridge-devicetoml.service 2>/dev/null || true
 }
 
 post_remove() {

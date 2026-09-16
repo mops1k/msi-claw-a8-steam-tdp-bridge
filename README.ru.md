@@ -1,4 +1,4 @@
-# steam-tdp-bridge
+# msi-claw-a8-steam-tdp-bridge
 
 [![Release](https://img.shields.io/github/v/release/mops1k/msi-claw-a8-steam-tdp-bridge)](https://github.com/mops1k/msi-claw-a8-steam-tdp-bridge/releases)
 [![License](https://img.shields.io/github/license/mops1k/msi-claw-a8-steam-tdp-bridge)](LICENSE)
@@ -43,12 +43,12 @@ Steam QAM (TdpLimit)
 com.steampowered.SteamOSManager1.TdpLimit1   (steamos-manager, user daemon)
    │ remote interface relay (system bus)
    ▼
-com.steampowered.TdpBridge  →  steam-tdp-bridge (root, C+GIO)
+com.steampowered.TdpBridge  →  msi-claw-a8-steam-tdp-bridge (root, C+GIO)
    │  │ запись в sysfs
    │  ▼
    │ /sys/class/firmware-attributes/.../ppt_*/current_value
    │
-   └─ профиль в UI: helper steam-set-profile.py
+   └─ профиль в UI: helper msi-claw-a8-steam-tdp-bridge-set-profile.py
       (webhelper debug 127.0.0.1:8080; только когда профиль реально меняется)
 ```
 
@@ -67,7 +67,7 @@ com.steampowered.TdpBridge  →  steam-tdp-bridge (root, C+GIO)
   - галочка **снята** → возвращает прежний профиль и больше его не трогает.
 - Чтобы список профилей в QAM совпадал с фактическим, демон меняет профиль
   **через сам Steam** (`SteamClient.Settings.SetSetting`, helper
-  `steam-set-profile.py`), но только когда целевой профиль отличается от
+  `msi-claw-a8-steam-tdp-bridge-set-profile.py`), но только когда целевой профиль отличается от
   текущего. Лимиты всегда пишутся в sysfs.
 - **Сон:** systemd sleep-хук (`--restore`) переприменяет последнее значение и
   профиль после пробуждения.
@@ -91,7 +91,7 @@ com.steampowered.TdpBridge  →  steam-tdp-bridge (root, C+GIO)
 Из релиза (рекомендуется):
 
 ```sh
-sudo pacman -U steam-tdp-bridge-<версия>-1-x86_64.pkg.tar.zst
+sudo pacman -U msi-claw-a8-steam-tdp-bridge-<версия>-1-x86_64.pkg.tar.zst
 ```
 
 Из исходников:
@@ -120,14 +120,14 @@ makepkg -si                # из каталога с PKGBUILD
 Проверка из командной строки:
 
 ```sh
-steam-tdp-bridge --get         # текущее значение (Вт)
-steam-tdp-bridge --apply 15    # выставить 15 Вт
+msi-claw-a8-steam-tdp-bridge --get         # текущее значение (Вт)
+msi-claw-a8-steam-tdp-bridge --apply 15    # выставить 15 Вт
 steamosctl get-tdp-limit       # через steamos-manager
 ```
 
 ## Конфигурация
 
-`/etc/steam-tdp-bridge/config.ini`:
+`/etc/msi-claw-a8-steam-tdp-bridge/config.ini`:
 
 | ключ                | смысл                                                            |
 |---------------------|------------------------------------------------------------------|
@@ -141,7 +141,7 @@ steamosctl get-tdp-limit       # через steamos-manager
 | `steam_config`      | путь к `config.vdf`; пусто — автоопределение                    |
 | `restore_last`      | восстанавливать последнее значение при старте                    |
 | `default_limit`     | значение, если нет сохранённого и EC отдаёт `0`                  |
-| `state_path`        | файл состояния (по умолчанию `/var/lib/steam-tdp-bridge/tdp`)    |
+| `state_path`        | файл состояния (по умолчанию `/var/lib/msi-claw-a8-steam-tdp-bridge/tdp`)    |
 
 ## Инструменты проверки
 
@@ -157,7 +157,7 @@ sudo python3 tools/verify-suspend.py --limit 18   # цикл сон/пробуж
 ## Диагностика
 
 ```sh
-systemctl status steam-tdp-bridge
+systemctl status msi-claw-a8-steam-tdp-bridge
 busctl --system introspect com.steampowered.TdpBridge /com/steampowered/TdpBridge
 busctl --user introspect com.steampowered.SteamOSManager1 /com/steampowered/SteamOSManager1 | grep Tdp
 cat /sys/class/firmware-attributes/msi-wmi-platform/attributes/ppt_pl1_spl/current_value
@@ -166,14 +166,14 @@ cat /sys/class/firmware-attributes/msi-wmi-platform/attributes/ppt_pl1_spl/curre
 Если `TdpLimit1` не появился у `steamos-manager`:
 
 - проверьте, что bind-mount активен: `mount | grep msi-claw-amd.toml`;
-- проверьте отсутствие `[tdp_limit]` в `/etc/steam-tdp-bridge/msi-claw-amd.toml`;
+- проверьте отсутствие `[tdp_limit]` в `/etc/msi-claw-a8-steam-tdp-bridge/msi-claw-amd.toml`;
 - перезапустите сессионный демон: `systemctl --user restart steamos-manager`.
 
 ## Обновление device-TOML
 
 `/usr/share/steamos-manager/devices/msi-claw-amd.toml` может меняться с
 обновлениями `steamos-manager`. После крупного апдейта сравните его с
-`/etc/steam-tdp-bridge/msi-claw-amd.toml` и перенесите изменения (кроме
+`/etc/msi-claw-a8-steam-tdp-bridge/msi-claw-amd.toml` и перенесите изменения (кроме
 удалённого `[tdp_limit]`).
 
 ## Удаление

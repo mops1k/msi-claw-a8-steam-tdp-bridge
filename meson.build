@@ -1,4 +1,4 @@
-project('steam-tdp-bridge', 'c',
+project('msi-claw-a8-steam-tdp-bridge', 'c',
   version: '0.1.0',
   license: 'MIT',
   default_options: ['c_std=c11', 'warning_level=2', 'optimization=2'])
@@ -14,7 +14,7 @@ sources = files(
   'source/tdp.c',
 )
 
-executable('steam-tdp-bridge',
+executable('msi-claw-a8-steam-tdp-bridge',
   sources,
   dependencies: [gio, glib],
   install: true,

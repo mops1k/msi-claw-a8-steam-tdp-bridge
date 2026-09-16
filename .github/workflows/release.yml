@@ -76,11 +76,11 @@ jobs:
             meson setup bin-build --prefix=/usr --buildtype=release
             ninja -C bin-build
             mkdir -p dist
-            install -Dm755 bin-build/steam-tdp-bridge dist/steam-tdp-bridge-${tag}-x86_64
+            install -Dm755 bin-build/msi-claw-a8-steam-tdp-bridge dist/msi-claw-a8-steam-tdp-bridge-${tag}-x86_64
             useradd -m builder
             chown -R builder:builder /work
             su builder -c 'cd /work && makepkg -f --nodeps --nocheck'
-            cp steam-tdp-bridge-*.pkg.tar.zst dist/
+            cp msi-claw-a8-steam-tdp-bridge-*.pkg.tar.zst dist/
           "
 
       - name: Upload artifacts

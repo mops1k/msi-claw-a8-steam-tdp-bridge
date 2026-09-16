@@ -1,0 +1,15 @@
+[Unit]
+Description=Override steamos-manager device TOML for MSI Claw A8 (msi-claw-a8-steam-tdp-bridge)
+DefaultDependencies=no
+After=local-fs.target
+Before=steamos-manager.service
+ConditionPathExists=/etc/msi-claw-a8-steam-tdp-bridge/msi-claw-amd.toml
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mount --bind /etc/msi-claw-a8-steam-tdp-bridge/msi-claw-amd.toml /usr/share/steamos-manager/devices/msi-claw-amd.toml
+ExecStop=/usr/bin/umount /usr/share/steamos-manager/devices/msi-claw-amd.toml
+
+[Install]
+WantedBy=multi-user.target

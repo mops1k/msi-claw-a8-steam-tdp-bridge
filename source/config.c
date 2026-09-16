@@ -1,6 +1,6 @@
 #include "bridge.h"
 
-#define CONFIG_PATH "/etc/steam-tdp-bridge/config.ini"
+#define CONFIG_PATH "/etc/msi-claw-a8-steam-tdp-bridge/config.ini"
 #define CONFIG_GROUP "tdp"
 
 static gchar *
@@ -60,7 +60,7 @@ config_load(Bridge *bridge)
     config_set_string(&bridge->platform_profile_name, keyfile, "platform_profile", "msi-wmi-platform");
     config_set_string(&bridge->profile_policy, keyfile, "profile_policy", "always");
     config_set_string(&bridge->profile_name, keyfile, "profile_name", "performance");
-    config_set_string(&bridge->state_path, keyfile, "state_path", "/var/lib/steam-tdp-bridge/tdp");
+    config_set_string(&bridge->state_path, keyfile, "state_path", "/var/lib/msi-claw-a8-steam-tdp-bridge/tdp");
 
     if (keyfile) {
         gchar *restore = g_key_file_get_string(keyfile, CONFIG_GROUP, "restore_last", NULL);

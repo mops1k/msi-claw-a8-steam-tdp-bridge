@@ -200,7 +200,7 @@ main(int argc, char **argv)
         bridge.conn, BRIDGE_DBUS_NAME, G_BUS_NAME_OWNER_FLAGS_NONE,
         on_name_acquired, on_name_lost, NULL, NULL);
 
-    g_message("steam-tdp-bridge started: %s%s (range %u..%u W, policy=%s)",
+    g_message("msi-claw-a8-steam-tdp-bridge started: %s%s (range %u..%u W, policy=%s)",
               BRIDGE_DBUS_NAME, BRIDGE_OBJECT_PATH,
               bridge.spl_min, bridge.spl_max, bridge.profile_policy);
 

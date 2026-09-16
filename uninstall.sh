@@ -1,5 +1,5 @@
 #!/bin/bash
-# Remove steam-tdp-bridge. Must be run as root.
+# Remove msi-claw-a8-steam-tdp-bridge. Must be run as root.
 set -euo pipefail
 
 PREFIX="${PREFIX:-/usr}"
@@ -10,22 +10,22 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo ">> stopping services"
-systemctl disable --now steam-tdp-bridge.service 2>/dev/null || true
-systemctl disable --now steam-tdp-bridge-devicetoml.service 2>/dev/null || true
+systemctl disable --now msi-claw-a8-steam-tdp-bridge.service 2>/dev/null || true
+systemctl disable --now msi-claw-a8-steam-tdp-bridge-devicetoml.service 2>/dev/null || true
 # Make sure the bind-mount is gone before the override file is deleted.
 umount /usr/share/steamos-manager/devices/msi-claw-amd.toml 2>/dev/null || true
 
 echo ">> removing files"
-rm -f "$PREFIX/bin/steam-tdp-bridge"
-rm -f "$PREFIX/lib/systemd/system/steam-tdp-bridge.service"
-rm -f "$PREFIX/lib/systemd/system/steam-tdp-bridge-devicetoml.service"
+rm -f "$PREFIX/bin/msi-claw-a8-steam-tdp-bridge"
+rm -f "$PREFIX/lib/systemd/system/msi-claw-a8-steam-tdp-bridge.service"
+rm -f "$PREFIX/lib/systemd/system/msi-claw-a8-steam-tdp-bridge-devicetoml.service"
 rm -f "$PREFIX/share/dbus-1/system.d/com.steampowered.TdpBridge.conf"
-rm -f "$PREFIX/lib/systemd/system-sleep/steam-tdp-bridge"
-rm -rf "$PREFIX/lib/steam-tdp-bridge"
-rm -f /etc/steamos-manager/remotes.d/steam-tdp-bridge.toml
-rm -rf /etc/steam-tdp-bridge
-rm -rf /var/lib/steam-tdp-bridge
-rm -rf "$PREFIX/share/licenses/steam-tdp-bridge"
+rm -f "$PREFIX/lib/systemd/system-sleep/msi-claw-a8-steam-tdp-bridge"
+rm -rf "$PREFIX/lib/msi-claw-a8-steam-tdp-bridge"
+rm -f /etc/steamos-manager/remotes.d/msi-claw-a8-steam-tdp-bridge.toml
+rm -rf /etc/msi-claw-a8-steam-tdp-bridge
+rm -rf /var/lib/msi-claw-a8-steam-tdp-bridge
+rm -rf "$PREFIX/share/licenses/msi-claw-a8-steam-tdp-bridge"
 
 systemctl daemon-reload
 

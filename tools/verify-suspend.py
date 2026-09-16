@@ -25,7 +25,7 @@ ATTRS = {
     "sppt": "ppt_pl2_sppt",
     "fppt": "ppt_pl3_fppt",
 }
-CLI = "/usr/bin/steam-tdp-bridge"
+CLI = "/usr/bin/msi-claw-a8-steam-tdp-bridge"
 
 
 def read(path):

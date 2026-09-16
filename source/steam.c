@@ -173,7 +173,7 @@ steam_get_toggle(Bridge *bridge, gboolean *enabled, guint *limit)
         return TRUE;
     }
 
-    const gchar *helper = "/usr/lib/steam-tdp-bridge/steam-set-profile.py";
+    const gchar *helper = "/usr/lib/msi-claw-a8-steam-tdp-bridge/msi-claw-a8-steam-tdp-bridge-set-profile.py";
     if (!g_file_test(helper, G_FILE_TEST_IS_REGULAR))
         return FALSE;
 
@@ -229,7 +229,7 @@ steam_get_toggle(Bridge *bridge, gboolean *enabled, guint *limit)
 void
 steam_set_ui_profile(const gchar *profile)
 {
-    const gchar *helper = "/usr/lib/steam-tdp-bridge/steam-set-profile.py";
+    const gchar *helper = "/usr/lib/msi-claw-a8-steam-tdp-bridge/msi-claw-a8-steam-tdp-bridge-set-profile.py";
     if (!g_file_test(helper, G_FILE_TEST_IS_REGULAR))
         return;
 
@@ -238,7 +238,7 @@ steam_set_ui_profile(const gchar *profile)
     gboolean spawned = g_spawn_async(NULL, argv, NULL, G_SPAWN_SEARCH_PATH,
                                      NULL, NULL, NULL, &error);
     if (!spawned) {
-        g_message("steam-set-profile helper failed: %s",
+        g_message("msi-claw-a8-steam-tdp-bridge-set-profile helper failed: %s",
                   error ? error->message : "unknown error");
         g_clear_error(&error);
     }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify that the steam-tdp-bridge TDP limit is actually enforced.
+"""Verify that the msi-claw-a8-steam-tdp-bridge TDP limit is actually enforced.
 
 Applies a list of TDP values, puts the APU under load and measures package
 power two independent ways:
@@ -7,7 +7,7 @@ power two independent ways:
   * amdgpu hwmon  power1_average (label "PPT")
   * RAPL          intel-rapl:0/energy_uj
 
-Run as root (needs to write the firmware attributes via steam-tdp-bridge).
+Run as root (needs to write the firmware attributes via msi-claw-a8-steam-tdp-bridge).
 
     sudo tools/verify-tdp.py 7 20 28
 """
@@ -17,7 +17,7 @@ import os
 import sys
 import time
 
-BRIDGE = "/usr/bin/steam-tdp-bridge"
+BRIDGE = "/usr/bin/msi-claw-a8-steam-tdp-bridge"
 SPL = "/sys/class/firmware-attributes/msi-wmi-platform/attributes/ppt_pl1_spl/current_value"
 PROFILE = "/sys/class/platform-profile/platform-profile-1/profile"
 LOAD_SECONDS = 15
