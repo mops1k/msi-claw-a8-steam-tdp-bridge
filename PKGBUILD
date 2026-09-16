@@ -1,6 +1,6 @@
 # Maintainer: mops1k
 pkgname=msi-claw-a8-steam-tdp-bridge
-pkgver=0.1.1
+pkgver=0.1.0
 pkgrel=1
 pkgdesc="Steam TDP bridge for MSI Claw A8: exposes com.steampowered.SteamOSManager1.TdpLimit1 via a remote interface for steamos-manager"
 arch=('x86_64')
