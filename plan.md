@@ -168,3 +168,11 @@ remotes в `/etc/steamos-manager/remotes.d/`, override device-TOML и конфи
   проверено: bind-mount снят, файлы удалены, сток возвращён (`[tdp_limit]` на месте, штатный
   `TdpLimit1` 18/7/35), повторная установка проходит. `install.sh` — установка `LICENSE` и
   `chown` каталога сборки обратно вызывающему пользователю.
+- 2026-09-16: **публикация на GitHub** `mops1k/msi-claw-a8-steam-tdp-bridge`. README.md (EN) +
+  README.ru.md (RU): что это, зачем, как работает, установка, использование, конфиг, диагностика,
+  инструменты проверки, удаление. `.github/workflows/release.yml` — ручной запуск
+  (`workflow_dispatch`, выбор `patch`/`minor`/`major` + `prerelease`): бампает версию
+  (`tools/bump-version.sh` → `pkgver`/`pkgrel` в PKGBUILD + `version` в meson.build),
+  коммитит и тегирует, собирает Arch-пакет и отдельный бинарник в контейнере `archlinux`,
+  создаёт GitHub-релиз с артефактами. Репозиторий инициализирован, запушен по SSH
+  (ветка `main`).

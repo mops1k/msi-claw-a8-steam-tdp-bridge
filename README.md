@@ -195,6 +195,10 @@ and the version in `meson.build`, commits and tags it, builds the Arch package
 and a standalone binary in an `archlinux` container, and publishes a GitHub
 release with both artifacts attached.
 
+Requires `Settings → Actions → General → Workflow permissions` set to
+**Read and write permissions** (the workflow pushes the version commit/tag and
+creates the release).
+
 ## License
 
 [MIT](LICENSE).

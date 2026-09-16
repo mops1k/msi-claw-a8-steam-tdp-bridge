@@ -71,7 +71,8 @@ jobs:
           set -euo pipefail
           tag="${{ needs.prepare.outputs.tag }}"
           docker run --rm -v "$PWD":/work -w /work archlinux:latest bash -euxo pipefail -c "
-            pacman -Syu --noconfirm --needed base-devel meson ninja gcc glib2
+            pacman -Sy --noconfirm archlinux-keyring
+            pacman -Su --noconfirm --needed base-devel meson ninja gcc glib2
             meson setup bin-build --prefix=/usr --buildtype=release
             ninja -C bin-build
             mkdir -p dist

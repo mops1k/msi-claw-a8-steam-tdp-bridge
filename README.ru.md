@@ -192,6 +192,9 @@ Workflow [`Release`](.github/workflows/release.yml) запускается вр�
 и версию в `meson.build`, коммитит и тегирует, собирает Arch-пакет и отдельный
 бинарник в контейнере `archlinux` и публикует GitHub-релиз с обоими артефактами.
 
+Требуется `Settings → Actions → General → Workflow permissions` =
+**Read and write permissions** (workflow пушит коммит/тег версии и создаёт релиз).
+
 ## Лицензия
 
 [MIT](LICENSE).
