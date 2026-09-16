@@ -182,3 +182,6 @@ remotes в `/etc/steamos-manager/remotes.d/`, override device-TOML и конфи
   каталоги `/etc`, `/var/lib`, `/usr/lib`, `remotes.d`, артефакты релиза. D-Bus-имена
   (`com.steampowered.TdpBridge`, `com.steampowered.SteamOSManager1.TdpLimit1`) не менялись —
   это контракт совместимости со SteamOS.
+- 2026-09-16: фикс CI: в job `release` нет checkout, поэтому `gh` не находил репозиторий
+  («failed to run git: not a git repository») — добавлен `--repo "${{ github.repository }}"`.
+  Непринятый тег `v0.1.1` (от упавшего прогона) удалён, версия откачена к `0.1.0`.
