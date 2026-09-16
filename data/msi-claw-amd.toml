@@ -1,0 +1,27 @@
+[[device]]
+dmi.sys_vendor = "Micro-Star International Co., Ltd."
+dmi.board_name = "MS-1T8K"
+device = "claw"
+variant = "Claw A8 BZ2EM"
+friendly_name = "MSI Claw"
+
+[gpu_performance]
+driver = "amdgpu"
+
+[gpu_power_profile]
+driver = "amdgpu"
+
+[performance_profile]
+platform_profile_name = "msi-wmi-platform"
+suggested_default = "balanced"
+
+[inputplumber]
+target_devices = ["deck-uhid", "keyboard"]
+
+[battery_charge_limit]
+method = "acpi_sb"
+
+# NOTE: [tdp_limit] intentionally omitted.
+# Removing the local firmware_attribute TDP manager makes steamos-manager
+# fall back to RemoteInterfaceLimitManager and relay TdpLimit1 to
+# com.steampowered.TdpBridge (see tdp-bridge.toml in remotes.d).

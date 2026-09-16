@@ -1,0 +1,5 @@
+# Remote TdpLimit1 implementation provided by steam-tdp-bridge.
+# See https://gitlab.steamos.cloud/holo/steamos-manager (Interoperability).
+[TdpLimit1]
+bus_name = "com.steampowered.TdpBridge"
+object_path = "/com/steampowered/TdpBridge"

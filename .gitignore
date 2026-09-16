@@ -1,0 +1,7 @@
+/build/
+/_build/
+/pkg/
+/src/
+*.pkg.tar.*
+__pycache__/
+*.pyc
